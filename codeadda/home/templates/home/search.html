@@ -1,0 +1,40 @@
+ {% extends 'base.html' %}
+
+
+{% block title %}Search Results{% endblock title %}
+
+ 
+ 
+ {% block body %}
+<h1> Search Results: </h1>
+{% if allposts|length < 1 %}
+<p>no search results </p>
+<p> Your search - <b> {{query}} </b> - did not match any documents.
+
+Suggestions:
+
+<li>  Make sure that all words are spelled correctly.</li>
+<li>  Try different keywords. </li>
+
+
+</p>
+
+
+{% endif %}
+
+<div class="p-4 p-md-5 mb-4 text-white rounded bg-dark my-3 mx-2">
+   {% for post in allposts %}
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 fst-italic">{{ post.title }}</h1>
+      <p class="lead my-3">{{ post.content }}</p>
+      <p class="lead mb-0"><a href="/bloghome" class="text-white fw-bold">Continue Reading....</a></p>
+    </div>
+  </div>
+  {% endfor %}
+
+
+
+
+  
+
+ {% endblock body %} 

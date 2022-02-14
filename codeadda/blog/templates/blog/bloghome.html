@@ -1,0 +1,88 @@
+ {% extends 'base.html' %}
+
+
+{% block title %}BlogHome{% endblock title %}
+
+ 
+ 
+ {% block body %}
+
+    {% for post in allposts %}
+<div class="p-4 p-md-5 mb-4 text-white rounded bg-dark my-3 mx-2">
+ 
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 fst-italic">{{ post.title }}</h1>
+      <p class="lead my-3">{{ post.content | truncatechars:100 }}</p>
+      <p class="lead mb-0"><a href="/bloghome/blog" role="button" class="text-white fw-bold">Continue Reading....</a></p>
+    </div>
+  </div>
+
+
+  {% endfor %}
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark my-3 mx-2">
+ 
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 fst-italic">Education system in Germany</h1>
+      <p class="lead my-3">About Education system in Germany......</p>
+      <p class="lead mb-0"><a href="/bloghome/blog-1" role="button" class="text-white fw-bold">Continue Reading....</a></p>
+    </div>
+  </div>
+  
+ 
+  
+
+
+  <div class="container">
+  <h2> Comments : </h2>
+  <form action="/bloghome/postcomment" method="post">
+  {% csrf_token %}
+  
+ 
+ 
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label"><I>Post a Comment</I></label>
+    <input type="text" class="form-control" name="comment" placeholder="comment here">
+    
+  </div>
+  
+  <input type="hidden" name="postsno" value="{{post.sno}}">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  
+{% for comment in comments %}
+  
+  <div class="container">
+<div class="row my-3">
+<div class="col-md-2 bg-success">Image here</div>
+<div class="col-md-10 bg-primary"><b>{{ comment.comment }}</b> </div>
+</div>
+</div>
+{% endfor %}
+<div class="container">
+<div class="row my-3">
+<div class="col-md-2 bg">Image here</div>
+<div class="col-md-10 bg">{{comment.user}}:{{comment.comment}}</div>
+</div>
+
+  
+
+ {% endblock body %} 
+ 
+  
